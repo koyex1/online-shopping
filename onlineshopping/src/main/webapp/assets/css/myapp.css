@@ -60,18 +60,32 @@ footer {
 custom styling
 */
 
+
+
 .wrapper{
 	min-height: 100%;
-	position:relative;
-	
+	position: relative;
 }
 
-.content{
-	padding-bottom:60px; /*height of the footer*/
-}
 .footer{
 	position: absolute;
-	bottom:15px;
+	bottom: 0px;
 	height:60px;
 	width:100%;
+}
+
+	.productlistwahala{
+	position: absolute;
+	left: 29%;
+	top: 80px;
+	}
+
+	.dataTableImg{
+	width: 100px;
+	height:100px;
+	}
+	.content{
+	padding-bottom:60px; 
+	height: 100%;
+
 }

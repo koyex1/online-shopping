@@ -11,8 +11,9 @@
    http://www.springframework.org/schema/mvc
    http://www.springframework.org/schema/mvc/spring-mvc.xsd
    ">
-   
-   <context:component-scan base-package="net.kzn.onlineshopping.controller"/>
+   <!-- for invoking controller and shoppingbackend functionalites -->
+   <context:component-scan base-package="net.kzn.onlineshopping"/>
+   <context:component-scan base-package="net.kzn.shoppingbackend"/>
    
    <bean id="viewResolver"
    		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
