@@ -8,6 +8,9 @@ $(function() {
 	case 'Contact Us':
 		$('#contact').addClass('active');
 		break;
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	default:
 		if (menu== "Home") break;
 		$('#listProducts').addClass('active');
@@ -16,9 +19,9 @@ $(function() {
 
 	}
 
-	var $table = $('#productListTable');
+	var table = $('#productListTable');
 	// execute the below code only where we have this table
-	if ($table.length) {
+	if (table.length) { //Lib length
 		var jsonUrl = '';
 		if (window.categoryId == '') {
 			jsonUrl = window.contextRoot + '/json/data/all/products';
@@ -26,36 +29,36 @@ $(function() {
 			jsonUrl = window.contextRoot + '/json/data/category/'+ window.categoryId +'/products';
 		}
 
-		$table.DataTable({
+		table.DataTable({ //Lib DataTable in DataTable Document
 			
-			lengthMenu: [[ 3, 5, 10, -1 ], [ '3 Records', '5 Records', '10 records', 'ALL' ] ],
-			pageLength: 5,
-			ajax: {
-				url: jsonUrl,
-				dataSrc: ''
+			lengthMenu: [[ 3, 5, 10, -1 ], [ '3 Records', '5 Records', '10 records', 'ALL' ] ], //Lib
+			pageLength: 5,				//Lib
+			ajax: {						//Lib
+				url: jsonUrl,			//lib
+				dataSrc: ''				//lib
 			},
 			columns: [ 
 					  {
-					  data: 'code',
-					/*  mRender: function(data, type, row){
+					  data: 'code',		//lib
+					/*  mRender: function(data, type, row){  //lib
 						  return '<img src="'+window,contextRoot+'/resources/images/'+ data +'.jpg" class="dataTableImg"/>'
 					  }*/
 				  	  }, 
 					  {
-						  data: 'name'
+						  data: 'name'	//lib
 					  }, 
 					  {
-						  data: 'brand'
+						  data: 'brand'  //lib
 					  }, 
 					  {
-						  data: 'unitPrice',
-						  mRender: function(data,type,row){
+						  data: 'unitPrice',  //lib
+						  mRender: function(data,type,row){ //lib
 							  return '&#8377; ' + data
 						  }
 					  },
 					  {
-						  data: 'quantity',
-						  mRender: function(data, type, row) {
+						  data: 'quantity',		//lib
+						  mRender: function(data, type, row) {		//lib
 							  if(data < 1){
 								  return '<span sytle="color:red">Out of Stock!</span>';
 							  }
@@ -63,10 +66,10 @@ $(function() {
 						  }
 					  },
 					  {
-						  data: 'id',
-						  bsortable: false,
-						  mRender: function(data,type,row){
-							  var str='';
+						  data: 'id',			//lib
+						  bsortable: false,			//lib
+						  mRender: function(data,type,row){			//lib
+							  var str='';				
 							  str += '<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open">View</span></a> &#160';
 							  
 							  if(row.quantity<1){

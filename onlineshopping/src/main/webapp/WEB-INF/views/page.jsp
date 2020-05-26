@@ -21,7 +21,7 @@
 
 <title> Olu Store- ${title}</title>
 <script>
-	window.menu = "${title}";
+	window.menu = "${title}"; //A way to get constants of variables that are not id values but actuall values
 	window.contextRoot ='${contextRoot}'
 </script>
 
@@ -79,6 +79,12 @@
 			<c:if test="${userClickShowProduct==true}">
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
+			
+				<!-- load only the userr click manage products -->
+			<c:if test="${userClickManageProducts==true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>
+			
 
 		</div>
 		
