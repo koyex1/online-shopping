@@ -2,6 +2,20 @@
 <div class="container">
 
 <div class="row">
+<c:if test="${not empty message}">
+<div class="col-xs-12">
+
+<div class="alert alert-sucess alert-dismissible">
+
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+${message}
+
+
+</div>
+
+</div>
+</c:if>
 <div class="col-md-offset-2 col-md-8">
 <div class="panel panel-primary">
 <div class="panel-heading">
@@ -11,7 +25,9 @@
 </div>
 <div class="panel-body">
 <!-- FORM ELEMENT -->
-<sf:form class="form-horizontal" modelAttribute="product">
+<sf:form class="form-horizontal" modelAttribute="product"
+action="${contexRoot}/manage/products"
+method="POST">
 
 <div class="form-group">
 <label class="control-label col-md-4" for="name">Enter Product Name</label>
@@ -29,7 +45,7 @@
 <label class="control-label col-md-4" for="brand">Enter Brand Name</label>
 <div class="col-md-8">
 
-<sf:input type="text" path="name" id="brand" placeholder="Brand Name (E.g Samung)" class="form-control"/>
+<sf:input type="text" path="brand" id="brand" placeholder="Brand Name (E.g Samung)" class="form-control"/>
 
 <em class="help-block">Field Important</em>
 
@@ -70,7 +86,7 @@
 </div>
 
 <div class="form-group">
-<label class="control-label col-md-4" for="brand">Select Category</label>
+<label class="control-label col-md-4" for="categoryId">Select Category</label>
 <div class="col-md-8">
 
 <sf:select path="categoryId" id="categoryId" class="form-control" 

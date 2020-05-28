@@ -69,22 +69,26 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value= {"/show/category/{id}/products"})
-	public ModelAndView showCategoryProducts(@PathVariable("id")int id) {
+	
+	/* 
+	 * Meaning map this url to this method. to it uses the info in this url(id)to execute the method 
+	 */
+	@RequestMapping(value= {"/show/category/{id}/products"})     
+	public ModelAndView showCategoryProducts(@PathVariable("id")int id) {// saying the pathvariable 'id'/{id} should be int id
 		ModelAndView mv = new ModelAndView("page");
 		
 		//categroyDAO to fetch a single category
 		Category category=null;
 		
-		category = categoryDAO.get(id);
+		category = categoryDAO.get(id );
 		
 		mv.addObject("title",category.getName());
 		
-		//passing the list of categories 
+		//passing the single category object
 		mv.addObject("category",category);
 		
-		//passing the single category object
-		mv.addObject("categories",categoryDAO.list());
+		//passing the list of categories 
+		mv.addObject("categories", categoryDAO.list());
 		
 		mv.addObject("userClickC",true);
 		return mv;
