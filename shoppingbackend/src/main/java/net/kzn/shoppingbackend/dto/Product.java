@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,19 +20,15 @@ public class Product {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 private String code;
+@NotBlank(message="Please ener the Product Name!")
 private String name;
-public String getName() {
-	return name;
-}
-
-
-public void setName(String name) {
-	this.name = name;
-}
+@NotBlank(message="Please ener the Product Brand!")
 private String brand;
 @JsonIgnore
+@NotBlank(message="Please ener the Product Description!")
 private String description;
 @Column(name="unit_price")
+@Min(value=1,message="The price cannot be less than 1!")
 private double unitPrice;
 private int quantity;
 @Column(name="is_active")
@@ -42,6 +41,15 @@ private int purchases;
 private int views;
 
 //DEFAUL CONSTRUCTOR
+public String getName() {
+	return name;
+}
+
+
+public void setName(String name) {
+	this.name = name;
+}
+
 public Product() {
 	this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
 }

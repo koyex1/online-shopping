@@ -26,7 +26,7 @@ ${message}
 <div class="panel-body">
 <!-- FORM ELEMENT -->
 <sf:form class="form-horizontal" modelAttribute="product"
-action="${contexRoot}/manage/products"
+action="${contextRoot}/manage/products"
 method="POST">
 
 <div class="form-group">
@@ -34,7 +34,7 @@ method="POST">
 <div class="col-md-8">
 
 <sf:input type="text" path="name" id="name" placeholder="Product Name (E.g Samsung S10)" class="form-control"/>
-
+<sf:errors path="name" cssClass="help-block" element="em"/>
 <em class="help-block">Field Important</em>
 
 </div>
@@ -46,6 +46,7 @@ method="POST">
 <div class="col-md-8">
 
 <sf:input type="text" path="brand" id="brand" placeholder="Brand Name (E.g Samung)" class="form-control"/>
+<sf:errors path="brand" cssClass="help-block" element="em"/>
 
 <em class="help-block">Field Important</em>
 
@@ -57,6 +58,7 @@ method="POST">
 <div class="col-md-8">
 <!-- placeholder is cut -->
 <sf:textarea path="description" id="description" rows="4" placeholder="Write a description" class="form-control"/>
+<sf:errors path="description" cssClass="help-block" element="em"/>
 
 <em class="help-block">Field Important</em>
 
@@ -68,6 +70,7 @@ method="POST">
 <div class="col-md-8">
 <!-- placeholder cut -->
 <sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Unit Price is &#8377" class="form-control"/>
+<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
 
 <em class="help-block">Field Important</em>
 

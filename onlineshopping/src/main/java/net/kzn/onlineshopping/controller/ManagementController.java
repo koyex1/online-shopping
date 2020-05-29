@@ -2,13 +2,18 @@ package net.kzn.onlineshopping.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +23,7 @@ import net.kzn.shoppingbackend.dto.Category;
 import net.kzn.shoppingbackend.dto.Product;
 
 @Controller
-@RequestMapping("/manage")
+@RequestMapping(value="/manage")
 public class ManagementController {
 	
 	@Autowired
@@ -30,7 +35,7 @@ public class ManagementController {
 	
 	private static final Logger Logger=LoggerFactory.getLogger(ManagementController.class);
 
-@RequestMapping(value="/products", method=RequestMethod.GET)
+@GetMapping(value="/products")
 public ModelAndView showManageProducts(@RequestParam(name="operation",required=false) String operation) {
 	
 	
@@ -58,15 +63,23 @@ public ModelAndView showManageProducts(@RequestParam(name="operation",required=f
 
 
 //handling product submission
-@RequestMapping(value="/products", method=RequestMethod.POST)
-public String handleProductSubmission(@ModelAttribute("product") Product mProduct) {
+@PostMapping(value="/products")
+public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model) {
 	
+	
+	//check if there are any errors
+	if(results.hasErrors()) {
+		model.addAttribute("userClickManageProducts",true);
+		model.addAttribute("title","Manage Products");
+		model.addAttribute("message","Validation failed for Product submission");
+		return "page";
+	}
 	Logger.info(mProduct.toString());
 	
 	//create a new product record
 	productDAO.add(mProduct);
 	
-	return"redirect:/manage/products?operation=product";
+	return "redirect:/manage/products?operation=product";
 }
 
 
