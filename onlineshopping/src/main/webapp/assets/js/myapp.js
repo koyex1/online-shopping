@@ -40,9 +40,9 @@ $(function() {
 			columns: [ 
 					  {
 					  data: 'code',		//lib
-					/*  mRender: function(data, type, row){  //lib
+					  mRender: function(data, type, row){  //lib
 						  return '<img src="'+window,contextRoot+'/resources/images/'+ data +'.jpg" class="dataTableImg"/>'
-					  }*/
+					  }
 				  	  }, 
 					  {
 						  data: 'name'	//lib
@@ -53,7 +53,7 @@ $(function() {
 					  {
 						  data: 'unitPrice',  //lib
 						  mRender: function(data,type,row){ //lib
-							  return '&#8377; ' + data
+							  return '&#8358; ' + data
 						  }
 					  },
 					  {
