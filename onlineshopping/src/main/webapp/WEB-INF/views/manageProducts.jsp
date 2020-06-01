@@ -161,27 +161,7 @@ table-bordered">
 </tr>
 </thead>
 
-<tbody>
-<tr>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-<td>
-<span class="glyphicon glyphicon-pencil"></span>
-</td>
-<td>
-<!-- toggle switch -->
-<label class="switch">
-<input type="checkbox" checked="checked"/>
-<div class="slider"></div>
-</label>
-</td>
-<td></td>
-
-</tr>
-
-</tbody>
+<!-- Tbody test removed -->
 
 <tfoot>
 <tr>
