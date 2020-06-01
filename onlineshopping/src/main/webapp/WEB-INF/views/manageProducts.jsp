@@ -154,6 +154,7 @@ table-bordered">
 <th>Id</th>
 <th>&#160;</th>
 <th>Name</th>
+<th>Brand</th>
 <th>Quantity</th>
 <th>Unit Price</th>
 <th>Active</th>
@@ -168,6 +169,7 @@ table-bordered">
 <th>Id</th>
 <th>&#160;</th>
 <th>Name</th>
+<th>Brand</th>
 <th>Quantity</th>
 <th>Unit Price</th>
 <th>Active</th>

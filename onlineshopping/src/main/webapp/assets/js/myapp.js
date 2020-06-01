@@ -1,7 +1,4 @@
 $(function() {
-	
-	
-	
 	// solving the active menu problem
 	switch (menu) {
 	case 'About Us':
@@ -44,7 +41,7 @@ $(function() {
 					  {
 					  data: 'code',		//lib
 					  mRender: function(data, type, row){  //lib
-						  return '<img src="'+window,contextRoot+'/resources/images/'+ data +'.jpg" class="dataTableImg"/>'
+						  return '<img src="'+window.	contextRoot+'/resources/images/'+ data +'.jpg" class="dataTableImg"/>'
 					  }
 				  	  }, 
 					  {
@@ -97,11 +94,11 @@ $(function() {
 	}
 	
 	//dismissing the alert after 3seconds
-	var alert = $('.alert');
-	if(alert.length){
+	var $alert = $('.alert');
+	if($alert.length){
 		
 		setTimeout(function(){
-			alert.fadeOut('slow');
+			$alert.fadeOut('slow');
 			
 		},3000)
 	}
@@ -139,6 +136,7 @@ $(function() {
 	// execute the below code only where we have this table
 	if (adminProductsTable.length) { //Lib length
 		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+		console.log(jsonUrl);
 		
 		adminProductsTable.DataTable({ //Lib DataTable in DataTable Document
 			
@@ -153,8 +151,9 @@ $(function() {
 			},
 					  {
 					  data: 'code',		//lib
+					  bSortable: false,
 					  mRender: function(data, type, row){  //lib
-						  return '<img src="'+window,contextRoot+'/resources/images/'+ data +'.jpg" class="adminDataTableImg"/>'
+						  return '<img src="'+window.contextRoot+'/resources/images/'+ data +'.jpg" class="adminDataTableImg"/>'
 					  }
 				  	  }, 
 					  {
@@ -181,6 +180,7 @@ $(function() {
 					  },
 					  {
 						  data: 'active',			//lib
+						  bSortable: false,
 						  mRender: function(data,type,row){
 							  var str= '';
 if(data){							  
@@ -199,9 +199,8 @@ else{
 						  bSortable: false,
 					  	  mRender: function(data, type, row){
 					  		  var str='';
-str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> </a>'
-					  		
-							return str;
+str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil">Edit</span> </a>'
+					  		  		 return str;
 					  	  }
 					  }
 					  ]
