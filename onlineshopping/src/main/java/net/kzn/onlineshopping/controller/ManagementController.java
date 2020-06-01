@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.kzn.onlineshopping.util.FileUploadUtility;
@@ -95,6 +97,21 @@ public String handleProductSubmission(@Valid @ModelAttribute("product") Product 
 }
 
 
+@PostMapping(value="/product/{id}/activation")
+@ResponseBody
+public String handleProductActivation(@PathVariable int id) {
+	//is going to fetch the product from the database
+	Product product = productDAO.get(id);
+	
+	boolean isActive = product.isActive();
+	//activating and deactivating based on the value of active field
+	product.setActive(!product.isActive());
+	//updating the product
+	productDAO.update(product);
+	
+	return (isActive) ? "You have successfully deactivated the product wwith id " + product.getId()
+	:"You have successfully activated the product with id" + product.getId();
+}
 
 
 

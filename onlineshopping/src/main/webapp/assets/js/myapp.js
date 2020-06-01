@@ -21,7 +21,7 @@ $(function() {
 
 	var table = $('#productListTable');
 	// execute the below code only where we have this table
-	if (table.length) { //Lib length
+	if (table.length) { // Lib length
 		var jsonUrl = '';
 		if (window.categoryId == '') {
 			jsonUrl = window.contextRoot + '/json/data/all/products';
@@ -29,36 +29,36 @@ $(function() {
 			jsonUrl = window.contextRoot + '/json/data/category/'+ window.categoryId +'/products';
 		}
 
-		table.DataTable({ //Lib DataTable in DataTable Document
+		table.DataTable({ // Lib DataTable in DataTable Document
 			
-			lengthMenu: [[ 3, 5, 10, -1 ], [ '3 Records', '5 Records', '10 records', 'ALL' ] ], //Lib
-			pageLength: 5,				//Lib
-			ajax: {						//Lib
-				url: jsonUrl,			//lib
-				dataSrc: ''				//lib
+			lengthMenu: [[ 3, 5, 10, -1 ], [ '3 Records', '5 Records', '10 records', 'ALL' ] ], // Lib
+			pageLength: 5,				// Lib
+			ajax: {						// Lib
+				url: jsonUrl,			// lib
+				dataSrc: ''				// lib
 			},
 			columns: [ 
 					  {
-					  data: 'code',		//lib
-					  mRender: function(data, type, row){  //lib
+					  data: 'code',		// lib
+					  mRender: function(data, type, row){  // lib
 						  return '<img src="'+window.	contextRoot+'/resources/images/'+ data +'.jpg" class="dataTableImg"/>'
 					  }
 				  	  }, 
 					  {
-						  data: 'name'	//lib
+						  data: 'name'	// lib
 					  }, 
 					  {
-						  data: 'brand'  //lib
+						  data: 'brand'  // lib
 					  }, 
 					  {
-						  data: 'unitPrice',  //lib
-						  mRender: function(data,type,row){ //lib
+						  data: 'unitPrice',  // lib
+						  mRender: function(data,type,row){ // lib
 							  return '&#8358; ' + data
 						  }
 					  },
 					  {
-						  data: 'quantity',		//lib
-						  mRender: function(data, type, row) {		//lib
+						  data: 'quantity',		// lib
+						  mRender: function(data, type, row) {		// lib
 							  if(data < 1){
 								  return '<span sytle="color:red">Out of Stock!</span>';
 							  }
@@ -66,9 +66,9 @@ $(function() {
 						  }
 					  },
 					  {
-						  data: 'id',			//lib
-						  bsortable: false,			//lib
-						  mRender: function(data,type,row){			//lib
+						  data: 'id',			// lib
+						  bsortable: false,			// lib
+						  mRender: function(data,type,row){			// lib
 							  var str='';				
 							  str += '<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open">View</span></a> &#160';
 							  
@@ -93,7 +93,7 @@ $(function() {
 
 	}
 	
-	//dismissing the alert after 3seconds
+	// dismissing the alert after 3seconds
 	var $alert = $('.alert');
 	if($alert.length){
 		
@@ -102,70 +102,48 @@ $(function() {
 			
 		},3000)
 	}
-	//----------------------------------------
-	$('.switch input[type="checkbox"]').on('change',function(){
-		var checkbox= $(this);
-		var checked = checkbox.prop('checked');
-		var dMsg = (checked)? 'You want to activate the product?':
-							 'You want to deactivate the product?';
-		var value = checkbox.prop('value');
-		
-		bootbox.confirm({
-			size: 'medium',
-			title: 'Product Activation & Deactivation',
-			message: dMsg,
-			callback: function(confirmed){
-				if(confirmed){
-					console.log(value);
-					bootbox.alert({
-						size: 'medium',
-						title: 'Information',
-						message: 'You are going to perform operation on product'+value
-					});
-				}
-				else{
-					checkbox.prop('checked', !checked);
-				}
-			}
-		})
-	});
-	//---------------------------------------------
-	//datatable administrator
-	//---------------------------------------------
+	// ----------------------------------------
+	
+	
+	
+	// ---------------------------------------------
+	// datatable administrator
+	// ---------------------------------------------
 	var adminProductsTable = $('#adminProductsTable');
 	// execute the below code only where we have this table
-	if (adminProductsTable.length) { //Lib length
+	if (adminProductsTable.length) { // Lib length
 		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
 		console.log(jsonUrl);
 		
-		adminProductsTable.DataTable({ //Lib DataTable in DataTable Document
+		adminProductsTable.DataTable({ // Lib DataTable in DataTable Document
 			
-			lengthMenu: [[ 10, 30, 50, -1 ], [ '10 Records', '30 Records', '50 records', 'ALL' ] ], //Lib
-			pageLength: 30,				//Lib
-			ajax: {						//Lib
-				url: jsonUrl,			//lib
-				dataSrc: ''				//lib
+			lengthMenu: [[ 10, 30, 50, -1 ], [ '10 Records', '30 Records', '50 records', 'ALL' ] ], // Lib
+			pageLength: 30,				// Lib
+			ajax: {						// Lib
+				url: jsonUrl,			// lib
+				dataSrc: ''				// lib
 			},
 			columns: [ {
-				data: 'id'  //variable mapping with the json/productDAO variables
+				data: 'id'  // variable mapping with the json/productDAO
+							// variables
 			},
 					  {
-					  data: 'code',		//lib
+					  data: 'code',		// lib
 					  bSortable: false,
-					  mRender: function(data, type, row){  //lib
+					  mRender: function(data, type, row){  // lib
 						  return '<img src="'+window.contextRoot+'/resources/images/'+ data +'.jpg" class="adminDataTableImg"/>'
 					  }
 				  	  }, 
 					  {
-						  data: 'name'	//lib
+						  data: 'name'	// lib
 					  }, 
 					  {
-						  data: 'brand'  //lib
+						  data: 'brand'  // lib
 					  }, 
 					  
 					  {
-						  data: 'quantity',		//lib
-						  mRender: function(data, type, row) {		//lib
+						  data: 'quantity',		// lib
+						  mRender: function(data, type, row) {		// lib
 							  if(data < 1){
 								  return '<span sytle="color:red">Out of Stock!</span>';
 							  }
@@ -173,21 +151,21 @@ $(function() {
 						  }
 					  },
 					  {
-						  data: 'unitPrice',  //lib
-						  mRender: function(data,type,row){ //lib
+						  data: 'unitPrice',  // lib
+						  mRender: function(data,type,row){ // lib
 							  return '&#8358; ' + data
 						  }
 					  },
 					  {
-						  data: 'active',			//lib
+						  data: 'active',			// lib
 						  bSortable: false,
 						  mRender: function(data,type,row){
 							  var str= '';
 if(data){							  
- str+='<label class="switch"><input type="checkbox" checked="checked"'+row.id+'"/><div class="slider"></div></label>';
+ str += '<label class="switch"><input type="checkbox" checked="checked" value="' + row.id + '"/><div class="slider"></div></label>';
 }
 else{
- str += '<label class="switch"><input type="checkbox" value="'+row.id+'"/><div class="slider"></div></label>';
+ str += '<label class="switch"><input type="checkbox" value="' + row.id + '"/><div class="slider"></div></label>';
 }
 		return str;
 						  }
@@ -203,13 +181,53 @@ str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"
 					  		  		 return str;
 					  	  }
 					  }
-					  ]
+					  
+					  ],
+			
+		initComplete: function(){
+			var api=this.api();
+			api.$('.switch input[type="checkbox"]').on('change',function(){
+				var checkbox= $(this);
+				var checked = checkbox.prop('checked');
+				var dMsg = (checked)? 'You want to activate the product?':
+									 'You want to deactivate the product?';
+				var value = checkbox.prop('value');
+				
+				bootbox.confirm({
+					size: 'medium',
+					title: 'Product Activation & Deactivation',
+					message: dMsg,
+					callback: function(confirmed){
+						if(confirmed){
+							console.log(value);
+							
+							var activationUrl = window.contextRoot + '/manage/product/' + value + '/activation';
+
+							$.post(activationUrl, function(data){
+							
+								bootbox.alert({
+								size: 'small',
+								title: 'Information',
+								message: data
+							});
+								
+							});
+							
+						}
+						else {
+							checkbox.prop('checked', !checked);
+					}
+					}
+				})
+			});
+			
+		}
 		 
 		});
 
 	}
 	
 	
-	//---------------------------------------------
+	// ---------------------------------------------
 
 });
