@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.kzn.onlineshopping.util.FileUploadUtility;
+import net.kzn.onlineshopping.validator.ProductValidator;
 import net.kzn.shoppingbackend.dao.CategoryDAO;
 import net.kzn.shoppingbackend.dao.ProductDAO;
 import net.kzn.shoppingbackend.dto.Category;
@@ -69,6 +70,8 @@ public ModelAndView showManageProducts(@RequestParam(name="operation",required=f
 public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 		HttpServletRequest request) {
 	
+	new ProductValidator().validate(mProduct, results);
+	
 	
 	//check if there are any errors
 	if(results.hasErrors()) {
@@ -90,6 +93,7 @@ public String handleProductSubmission(@Valid @ModelAttribute("product") Product 
 	
 	return "redirect:/manage/products?operation=product";
 }
+
 
 
 

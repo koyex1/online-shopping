@@ -36,7 +36,6 @@ enctype="multipart/form-data">
 
 <sf:input type="text" path="name" id="name" placeholder="Product Name (E.g Samsung S10)" class="form-control"/>
 <sf:errors path="name" cssClass="help-block" element="em"/>
-<em class="help-block">Field Important</em>
 
 </div>
 </div>
@@ -49,7 +48,7 @@ enctype="multipart/form-data">
 <sf:input type="text" path="brand" id="brand" placeholder="Brand Name (E.g Samung)" class="form-control"/>
 <sf:errors path="brand" cssClass="help-block" element="em"/>
 
-<em class="help-block">Field Important</em>
+
 
 </div>
 </div>
@@ -61,7 +60,7 @@ enctype="multipart/form-data">
 <sf:textarea path="description" id="description" rows="4" placeholder="Write a description" class="form-control"/>
 <sf:errors path="description" cssClass="help-block" element="em"/>
 
-<em class="help-block">Field Important</em>
+
 
 </div>
 </div>
@@ -73,7 +72,7 @@ enctype="multipart/form-data">
 <sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Unit Price is &#8377" class="form-control"/>
 <sf:errors path="unitPrice" cssClass="help-block" element="em"/>
 
-<em class="help-block">Field Important</em>
+
 
 </div>
 </div>
@@ -84,7 +83,7 @@ enctype="multipart/form-data">
 
 <sf:input type="number" path="quantity" id="quantity" placeholder="Quantity Available" class="form-control"/>
 
-<em class="help-block">Field Important</em>
+
 
 </div>
 </div>
@@ -94,8 +93,9 @@ enctype="multipart/form-data">
 <div class="col-md-8">
 
 <sf:input type="file" path="file" id="file" class="form-control"/>
+<sf:errors path="file" cssClass="help-block" element="em"/>
 
-<em class="help-block">Field Important</em>
+
 
 </div>
 </div>
@@ -110,7 +110,7 @@ items="${categories }"
 itemLabel="name"
 itemValue="id"
 />
-<em class="help-block">Field Important</em>
+
 </div>
 </div>
 
@@ -139,4 +139,69 @@ itemValue="id"
 </div>
 
 </div>
+<div class="row">
+<div class="col-xs-12">
+<h3>Available Products</h3>
 </div>
+<div class="col-xs-12">
+<div style="overflow:auto">
+
+<!-- Product table for Admin -->
+<table id="adminProductsTable" class="table table-striped 
+table-bordered">
+<thead>
+<tr>
+<th>Id</th>
+<th>&#160;</th>
+<th>Name</th>
+<th>Quantity</th>
+<th>Unit Price</th>
+<th>Active</th>
+<th>Edit</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>
+<span class="glyphicon glyphicon-pencil"></span>
+</td>
+<td>
+<!-- toggle switch -->
+<label class="switch">
+<input type="checkbox" checked="checked"/>
+<div class="slider"></div>
+</label>
+</td>
+<td></td>
+
+</tr>
+
+</tbody>
+
+<tfoot>
+<tr>
+<th>Id</th>
+<th>&#160;</th>
+<th>Name</th>
+<th>Quantity</th>
+<th>Unit Price</th>
+<th>Active</th>
+<th>Edit</th>
+</tr>
+</tfoot>
+
+</table>
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+
