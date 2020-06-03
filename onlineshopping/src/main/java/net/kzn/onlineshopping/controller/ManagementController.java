@@ -60,6 +60,9 @@ public ModelAndView showManageProducts(@RequestParam(name="operation",required=f
 		if(operation.equals("product")) {
 			mv.addObject("message","Product Submitted Successfully!");
 		}
+		else if(operation.equals("category")) {
+			mv.addObject("message","Category Added Successfully");
+		}
 	}
 	
 	return mv;
@@ -142,12 +145,28 @@ public String handleProductActivation(@PathVariable int id) {
 	:"You have successfully activated the product with id " + product.getId();
 }
 
+//to handle category submission
+@PostMapping(value="/category")
+public String handleCategorySubmission(@ModelAttribute Category category) {
+	categoryDAO.add(category);
+	
+	return "redirect:/manage/products/?operation=category";
+}
+
+
 
 //returning Categories for all the request mapping
 @ModelAttribute("categories")
 public List<Category> getCategories(){
 	
 	return categoryDAO.list();
+}
+
+//returning Categories for all the request mapping
+@ModelAttribute("category")
+public Category getCategory(){
+	
+	return new Category();
 }
 
 
