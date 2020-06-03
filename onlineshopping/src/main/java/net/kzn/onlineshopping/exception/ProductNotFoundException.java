@@ -1,6 +1,8 @@
 package net.kzn.onlineshopping.exception;
 
-public class ProductNotFoundException extends Exception {
+import java.io.Serializable;
+
+public class ProductNotFoundException extends Exception implements Serializable {
 
 	/**
 	 * 
@@ -8,11 +10,11 @@ public class ProductNotFoundException extends Exception {
 	private static final long serialVersionUID = 1L;
 	private String message;
 	
-	public ProductNotFoundException() {
-		this("Product is not available");
+	public ProductNotFoundException() {    //constructor
+		 this("Product is not available");
 	}
 	
-	public ProductNotFoundException(String message) {
+	public ProductNotFoundException(String message) {		//also a constructor
 		this.message=System.currentTimeMillis()+ ": " + message;
 	}
 	

@@ -6,10 +6,22 @@ import java.io.StringWriter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalDefaulExceptionHandler {
-
+///=NOT NECCESSARY
+	@ExceptionHandler(NoHandlerFoundException.class)
+	public ModelAndView handlerNoHandlerFoundException() {
+		ModelAndView mv= new ModelAndView("error");
+		mv.addObject("errorTitle","The page is not constructed");
+		
+		mv.addObject("errorDescription","The page you are looking for is not available right now");
+		
+		mv.addObject("title","404 Error Page");
+		
+		return mv;
+	}
 	
 	@ExceptionHandler(ProductNotFoundException.class)
 	public ModelAndView handlerProductNotFoundException() {
@@ -29,7 +41,7 @@ public class GlobalDefaulExceptionHandler {
 		mv.addObject("errorTitle","Contact Your Administrator!");
 		
 		
-		//Only for debugging your application
+		//Only for debugging your application i.e default debugging text
 		StringWriter sw=new StringWriter();
 		PrintWriter pw=new PrintWriter(sw);
 		

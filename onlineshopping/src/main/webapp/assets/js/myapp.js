@@ -153,7 +153,7 @@ $(function() {
 					  {
 						  data: 'unitPrice',  // lib
 						  mRender: function(data,type,row){ // lib
-							  return '&#8358; ' + data
+							  return '&#8358; ' + data;
 						  }
 					  },
 					  {
@@ -177,7 +177,7 @@ else{
 						  bSortable: false,
 					  	  mRender: function(data, type, row){
 					  		  var str='';
-str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil">Edit</span> </a>'
+str += '<a href="'+	window.contextRoot+'/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil">Edit</span> </a>'
 					  		  		 return str;
 					  	  }
 					  }
@@ -194,7 +194,7 @@ str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"
 				var value = checkbox.prop('value');
 				
 				bootbox.confirm({
-					size: 'medium',
+					size: 'small',
 					title: 'Product Activation & Deactivation',
 					message: dMsg,
 					callback: function(confirmed){
@@ -206,7 +206,7 @@ str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning"
 							$.post(activationUrl, function(data){
 							
 								bootbox.alert({
-								size: 'small',
+								size: 'medium',
 								title: 'Information',
 								message: data
 							});

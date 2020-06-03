@@ -40,6 +40,7 @@ public class ManagementController {
 	
 	private static final Logger Logger=LoggerFactory.getLogger(ManagementController.class);
 
+	//get into the orm the data to be created
 @GetMapping(value="/products")
 public ModelAndView showManageProducts(@RequestParam(name="operation",required=false) String operation) {
 	
@@ -64,18 +65,41 @@ public ModelAndView showManageProducts(@RequestParam(name="operation",required=f
 	return mv;
 }
 
+//Get into the orm the data to be edited
+@GetMapping(value="/{id}/product")
+public ModelAndView showEditProduct(@PathVariable int id) {
+	
+	
+	ModelAndView mv= new ModelAndView("page");
+	
+	mv.addObject("userClickManageProducts",true);
+	mv.addObject("title","Manage Products");
+	
+	//fetch product from database
+	Product nProduct = productDAO.get(id);
+	//set the product fetch from database
+	mv.addObject("product",nProduct);
+	
+	return mv;
+}
 
-
-
+//post from the orm the data submitted into database
 //handling product submission
 @PostMapping(value="/products")
 public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 		HttpServletRequest request) {
-	
+	//handle image validation for new products CUSTOM ERRORS
+	if(mProduct.getId()==0) {
 	new ProductValidator().validate(mProduct, results);
+	}
+	else {
+		if(!mProduct.getFile().getOriginalFilename().equals("")) { //FOR ERROR
+			new ProductValidator().validate(mProduct, results);
+		}
+			
+	}
 	
-	
-	//check if there are any errors
+	//check if there are any errors DEFAULT ERRORS
 	if(results.hasErrors()) {
 		model.addAttribute("userClickManageProducts",true);
 		model.addAttribute("title","Manage Products");
@@ -84,19 +108,24 @@ public String handleProductSubmission(@Valid @ModelAttribute("product") Product 
 	}
 	Logger.info(mProduct.toString());
 	
-	//create a new product record
+	//create a new product record if 0
+	if(mProduct.getId()==0) {
 	productDAO.add(mProduct);
-	
+	}
+	else {
+		//update if id is not 0
+		productDAO.update(mProduct);
+	}
 	
 	if(!mProduct.getFile().getOriginalFilename().equals("")) {
-		FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+		FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode()); //FOR UPLOADING
 	}
 	
 	
 	return "redirect:/manage/products?operation=product";
 }
 
-
+//post from orm into the database the activation update
 @PostMapping(value="/product/{id}/activation")
 @ResponseBody
 public String handleProductActivation(@PathVariable int id) {
@@ -110,9 +139,8 @@ public String handleProductActivation(@PathVariable int id) {
 	productDAO.update(product);
 	
 	return (isActive) ? "You have successfully deactivated the product wwith id " + product.getId()
-	:"You have successfully activated the product with id" + product.getId();
+	:"You have successfully activated the product with id " + product.getId();
 }
-
 
 
 //returning Categories for all the request mapping

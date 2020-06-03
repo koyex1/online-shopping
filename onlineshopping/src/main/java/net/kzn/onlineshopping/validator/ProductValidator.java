@@ -17,7 +17,7 @@ public class ProductValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		Product product=(Product) target;
+		Product product=(Product) target; //CASTING
 		//whether file has been selected or not
 		if(product.getFile()==null|| product.getFile().getOriginalFilename().equals("")) {
 			errors.rejectValue("file", null,"Please select an image file to upload!");

@@ -85,7 +85,7 @@ public class PageController {
 		mv.addObject("title",category.getName());
 		
 		//passing the single category object
-		mv.addObject("category",category);
+		mv.addObject("category",category);  //not important as far as i am concerned
 		
 		//passing the list of categories 
 		mv.addObject("categories", categoryDAO.list());
@@ -107,7 +107,7 @@ public class PageController {
 		
 		product = productDAO.get(id);
 		
-		if(product==null) throw new ProductNotFoundException();
+		if(product==null) throw new ProductNotFoundException(); //
 		
 		
 		//passing the list of categories 

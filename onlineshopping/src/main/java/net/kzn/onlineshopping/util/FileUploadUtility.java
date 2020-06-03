@@ -28,7 +28,7 @@ public class FileUploadUtility {
 		//create the directories 
 		new File(ABS_PATH).mkdirs();
 	}
-	if(!new File(ABS_PATH).exists()) {
+	if(!new File(REAL_PATH).exists()) {
 		//create the directories 
 		new File(REAL_PATH).mkdirs();
 	}
