@@ -96,6 +96,9 @@
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.min.js"></script>
 		
+		<!-- jquery validator -->
+		<script src="${js}/jquery.validate.js"></script>
+		
 		<!-- DataTablel Plugin -->
 		<script src="${js}/jquery.dataTables.js"></script> 
 		
