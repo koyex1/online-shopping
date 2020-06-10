@@ -1,6 +1,4 @@
-
-	-------------------------------------
-	@OneToOne 
+@OneToOne 
 	private User user;
 	
 	
@@ -10,3 +8,14 @@
 	public void setUser(User user) {
 		this.user = user;
 	}
+	-------------------------------------
+@OneToOne(mappedBy="user")
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	

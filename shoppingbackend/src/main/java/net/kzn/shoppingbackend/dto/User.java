@@ -1,5 +1,7 @@
 package net.kzn.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="user_detail")
-public class User {
-/*
+public class User implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*
  * private fields for user
  */
 	@Id
@@ -27,11 +33,14 @@ public class User {
 	private String contactNumber;
 	private String role;
 	private String password;
+	private String confirmPassword;
 	private boolean enabled = true;
 	
 	
 	/* -----------*/
-	//mappedby removes the constraint in userdetail table
+	//mappedby removes the constraint and clears cartId from table in userdetail table
+	//cascading is to avoid calling cart method separately
+	
 	@OneToOne(mappedBy="user", cascade = CascadeType.ALL)
 	private Cart cart;
 	
@@ -110,6 +119,12 @@ public class User {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", contactNumber=" + contactNumber + ", role=" + role + ", password=" + password + ", enabled="
 				+ enabled + "]";
+	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 	
 	

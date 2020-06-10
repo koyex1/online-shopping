@@ -46,7 +46,7 @@ public class PageController {
 		mv.addObject("title","About Us");
 		mv.addObject("userClickAbout",true);
 		return mv;
-	}
+	}	
 	
 	@RequestMapping(value= {"/contact"})
 	public ModelAndView contact() {
@@ -100,6 +100,7 @@ public class PageController {
 	
 	@RequestMapping(value= {"/show/{id}/product"})
 	public ModelAndView showSingleProduct(@PathVariable("id")int id) throws ProductNotFoundException {
+		
 		ModelAndView mv = new ModelAndView("page");
 		
 		//categroyDAO to fetch a single category
@@ -124,6 +125,11 @@ public class PageController {
 		return mv;
 	}
 	
-	
-	
+	//having similar mapping to our flow id
+	@RequestMapping(value= {"/register"})
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title","About Us");
+		return mv;
+	}		
 }
